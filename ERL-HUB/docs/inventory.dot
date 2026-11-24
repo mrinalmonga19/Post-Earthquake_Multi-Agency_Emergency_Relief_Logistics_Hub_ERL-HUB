@@ -1,0 +1,16 @@
+digraph I {
+  rankdir=BT;
+  graph [fontname="Helvetica", nodesep=0.5, ranksep=0.7, pad=0.25];
+  node [shape=box, style="rounded,filled", fillcolor="#FFF2CC", color="#44546A", fontname="Helvetica", fontsize=12, margin="0.15,0.09"];
+  edge [fontname="Helvetica", fontsize=10, color="#44546A"];
+
+  CARGO [label="ReliefCargo\n- reserved_ (private)\n+ sameItem(), operator==\n+ operator<<, operator>>"];
+  MAN   [label="Manifest\n- ReliefCargo* lines_  (dynamic)\n+ copy ctor, operator=, destructor\n+ operator==, <<, >>"];
+  DEP   [label="DistributionDepot\n- unordered_map<string, ReliefCargo>\n+ operator+=, operator-=\n+ ReliefCargo& item()"];
+  IC    [label="IncidentCommander\n(friend class)", fillcolor="#F8CBAD"];
+
+  CARGO -> MAN [arrowhead=diamond, label=" array of"];
+  CARGO -> DEP [arrowhead=diamond, label=" stock of"];
+  IC -> CARGO [arrowhead=open, style=dotted, label=" friend"];
+  IC -> DEP   [arrowhead=open, style=dotted, label=" friend"];
+}

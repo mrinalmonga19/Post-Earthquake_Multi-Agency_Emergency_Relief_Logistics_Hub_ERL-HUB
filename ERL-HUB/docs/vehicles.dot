@@ -1,0 +1,22 @@
+digraph V {
+  rankdir=BT;
+  graph [fontname="Helvetica", nodesep=0.45, ranksep=0.75, pad=0.25];
+  node [shape=box, style="rounded,filled", fillcolor="#F4F6FA", color="#44546A", fontname="Helvetica", fontsize=12, margin="0.15,0.09"];
+  edge [fontname="Helvetica", fontsize=10, color="#44546A"];
+
+  RV  [label="ReliefVehicle (abstract)\n+ evaluateRoute() = 0\n+ kind() = 0\n+ dispatch(), load()\nstatic: operational_, totalDispatchedTonnes_", fillcolor="#DCE6F2"];
+  GPS [label="GPSBeacon", fillcolor="#E2EFDA"];
+  LSU [label="EmergencyLifeSupportUnit", fillcolor="#E2EFDA"];
+  AT  [label="AerialTransport"];
+  GC  [label="GroundConvoy"];
+  AC  [label="AmphibiousCraft"];
+  AMU [label="AmphibiousMedicalUnit\nfinal overrider of\nevaluateRoute() and kind()", fillcolor="#FCE4D6"];
+
+  GPS -> RV [arrowhead=diamond, label=" contained", color="#548235", fontcolor="#548235"];
+  LSU -> RV [arrowhead=diamond, label=" contained", color="#548235", fontcolor="#548235"];
+  AT  -> RV [arrowhead=onormal, style=dashed, label=" virtual"];
+  GC  -> RV [arrowhead=onormal, style=dashed, label=" virtual"];
+  AC  -> RV [arrowhead=onormal, style=dashed, label=" virtual"];
+  AMU -> GC [arrowhead=onormal];
+  AMU -> AC [arrowhead=onormal];
+}
